@@ -10,6 +10,13 @@
 2. `bundle exec rails s`
 3.  Open http://localhost:3000
 
+# Running with vagrant
+
+1. `cd vagrant && vagrant up`
+2. `cd vagrant && vagrant ssh`
+2. `cd /usr/local/backend-test && bundle exec rails s`
+3.  Open http://localhost:3000
+
 # Challenges
 
 _Please note that output doesn't have to match exactly the previous examples (seed has some randomness)._

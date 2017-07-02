@@ -1,0 +1,32 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/xenial64"
+
+  config.vm.provider :virtualbox do |vb|
+    vb.memory = 2048
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+  end
+
+  config.vm.define "server" do |server|
+    server.vm.synced_folder "../../backend-test", "/usr/local/backend-test"
+    server.vm.network "private_network", ip: "192.168.33.17"
+    server.vm.network :forwarded_port, guest: 3000, host: 3000
+    server.vm.network :forwarded_port, guest: 80, host: 8080
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get update
+    apt-get install -y build-essential ruby ruby-dev postgresql libpq-dev phppgadmin
+    gem install bundler
+    touch /usr/local/backend-test/log/development.log
+    chmod 0666 /usr/local/backend-test/log/development.log
+    sed -i ':a;N;$!ba;s/peer/md5/3' /etc/postgresql/9.5/main/pg_hba.conf
+    service postgresql restart
+    su - postgres -c "cd /usr/local/backend-test && psql -U postgres --file=setup.sql"
+    su - ubuntu -c "cd /usr/local/backend-test && ./setup.sh"
+    sed -i ':a;N;$!ba;s/Require local/Allow From all/g' /etc/apache2/conf-available/phppgadmin.conf
+    service apache2 restart
+  SHELL
+end
