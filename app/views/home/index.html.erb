@@ -17,3 +17,21 @@
     </tr>
   <% end %>
 </table>
+
+<h1>Listing maps views chanllenge 2</h1>
+
+<table>
+  <tr>
+    <th>Group</th>
+    <th>User</th>
+    <th>Views</th>
+  </tr>
+
+  <% @mapsViews.each do |mapView| %>
+    <tr>
+      <td><%= mapView['group_name']%></td>
+      <td><%= mapView['user']%></td>
+      <td><%= mapView['views']%></td>
+    </tr>
+  <% end %>
+</table>
