@@ -1,1 +1,19 @@
-Your instructions for this page are in the README.md. Enjoy!
+<h1>Listing users chanllenge 1</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Encrypted Name</th>
+    <th>Num Groups</th>
+    <th>Groups</th>
+  </tr>
+
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.crypted_name %></td>
+      <td><%= user.num_groups%></td>
+      <td><%= user.groups_names%></td>
+    </tr>
+  <% end %>
+</table>
