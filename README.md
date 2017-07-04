@@ -52,7 +52,7 @@ Product, Charles, 1233303
 ```
  group   |  name   |  views  | percent_of_group_views
 ----------+---------+---------+-----------------------
- Backend  | Charles | 1211037 | 100.00% 
+ Backend  | Charles | 1211037 | 100.00%
  Engine   | Bob     | 1223563 | 100.00%
  Frontend | Daphne  | 1264795 | 100.00%
  Leads    | Alice   | 1251522 | 50.56%

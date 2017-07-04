@@ -35,3 +35,23 @@
     </tr>
   <% end %>
 </table>
+
+<h1>Listing maps views chanllenge 3 extra ball</h1>
+
+<table>
+  <tr>
+    <th>Group</th>
+    <th>User</th>
+    <th>Views</th>
+    <th>% of Group Views</th>
+  </tr>
+
+  <% @mapsViewsPercentage.each do |mapView| %>
+    <tr>
+      <td><%= mapView['group']%></td>
+      <td><%= mapView['user']%></td>
+      <td><%= mapView['views']%></td>
+      <td><%= mapView['percent_of_group_views']%></td>
+    </tr>
+  <% end %>
+</table>
